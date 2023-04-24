@@ -70,6 +70,13 @@ checkout:
 | image   | Name of the custom plan (dynamic object) |
 | command | List of command                          |
 
+```yaml
+before_script:
+  image: custom-data-image:latest
+  command:
+    - mkdir -p .poco/custom-temp-folder
+    - cp -r /data-in-container .poco/custom-temp-folder
+```
 
 ## Plans object
 
