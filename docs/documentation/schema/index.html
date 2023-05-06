@@ -5,7 +5,7 @@
     <head>
     <meta charset="utf-8">
     
-    <title>Tutorials — getpoco.io</title>
+    <title>Syntax for poco yaml — getpoco.io</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="description" content="Poco helps to organise and manage Docker, Docker-Compose, Kubernetes projects of any complexity using simple YAML config files to shorten the route from finding your project to initialising it in your local environment.">
     <meta property="og:type" content="website">
@@ -140,9 +140,179 @@
 
 <main class="main">
     <div class="content">
-        <h1 id="Tutorials"><a href="#Tutorials" class="headerlink" title="Tutorials"></a>Tutorials</h1><ul>
-<li><a href="/tutorials/hello-world">Poco Hello World</a></li>
-</ul>
+        <h1 id="Syntax-for-poco-yaml"><a href="#Syntax-for-poco-yaml" class="headerlink" title="Syntax for poco yaml"></a>Syntax for poco yaml</h1><h2 id="About-YAML-syntax-for-poco"><a href="#About-YAML-syntax-for-poco" class="headerlink" title="About YAML syntax for poco"></a>About YAML syntax for poco</h2><p>poco files use YAML syntax, and must have either a .yml or .yaml file extension. If you’re new to YAML and want to learn more, see “<a href="https://learnxinyminutes.com/docs/yaml/" target="_blank" rel="noopener">Learn YAML in Y minutes</a>“.</p>
+<p>You must store poco files in the root directory of your repository.</p>
+<h2 id="POCO-plans-configuration-file"><a href="#POCO-plans-configuration-file" class="headerlink" title="POCO plans configuration file"></a>POCO plans configuration file</h2><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>version</td>
+<td>Minimum API version of poco yaml schema</td>
+</tr>
+<tr>
+<td>maintener</td>
+<td>Owner of the project</td>
+</tr>
+<tr>
+<td><a href="#environment-object">environment</a></td>
+<td>Global environment variable</td>
+</tr>
+<tr>
+<td><a href="#plans-object">plan</a></td>
+<td>The plan configurations</td>
+</tr>
+<tr>
+<td><a href="#checkout-object">checkout</a></td>
+<td>Other Git repositories of the project</td>
+</tr>
+<tr>
+<td><a href="#script-object">before_script</a></td>
+<td>Run script before start the plan</td>
+</tr>
+<tr>
+<td><a href="#script-object">after_script</a></td>
+<td>Run script after start the plan</td>
+</tr>
+</tbody></table>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="number">0.99</span></span><br><span class="line"><span class="attr">maintener:</span> <span class="string">operation@shiwaforce.com</span></span><br><span class="line"><span class="attr">environment:</span></span><br><span class="line">  <span class="comment"># see details in Environment object</span></span><br><span class="line"><span class="attr">checkout:</span></span><br><span class="line">  <span class="comment"># see details in Checkout object</span></span><br><span class="line"><span class="attr">before_script:</span></span><br><span class="line">  <span class="comment"># see details in Script object</span></span><br><span class="line"><span class="attr">after_script:</span></span><br><span class="line">  <span class="comment"># see details in Script object</span></span><br><span class="line"><span class="attr">plan:</span></span><br><span class="line">  <span class="comment"># see details in Plans object</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Environment-object"><a href="#Environment-object" class="headerlink" title="Environment object"></a>Environment object</h2><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>include</td>
+<td>Path of <code>.env</code> file</td>
+</tr>
+</tbody></table>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">environment:</span></span><br><span class="line"><span class="attr">  include:</span> <span class="string">.poco/global/default.env</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Checkout-object"><a href="#Checkout-object" class="headerlink" title="Checkout object"></a>Checkout object</h2><p>List of other Git repositories for the project</p>
+<table>
+<thead>
+<tr>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>folder</td>
+<td>Target place of the repository</td>
+</tr>
+<tr>
+<td>git url</td>
+<td>Clonable url of the repository (ssh preferred)</td>
+</tr>
+<tr>
+<td>branch</td>
+<td>Branch name is optional (default: master)</td>
+</tr>
+</tbody></table>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">checkout:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">.poco/git/another-component</span> <span class="string">git@github.com:shiwaforce/poco.git</span> <span class="string">"feature/custom-branch"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Script-object"><a href="#Script-object" class="headerlink" title="Script object"></a>Script object</h2><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>image</td>
+<td>Name of the custom plan (dynamic object)</td>
+</tr>
+<tr>
+<td>command</td>
+<td>List of command</td>
+</tr>
+</tbody></table>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">before_script:</span></span><br><span class="line"><span class="attr">  image:</span> <span class="attr">custom-data-image:latest</span></span><br><span class="line"><span class="attr">  command:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">mkdir</span> <span class="bullet">-p</span> <span class="string">.poco/custom-temp-folder</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">cp</span> <span class="bullet">-r</span> <span class="string">/data-in-container</span> <span class="string">.poco/custom-temp-folder</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Plans-object"><a href="#Plans-object" class="headerlink" title="Plans object"></a>Plans object</h2><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a href="#plan-object">&lt;name&gt;</a></td>
+<td>Name of the custom plan (dynamic object)</td>
+</tr>
+</tbody></table>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">plan:</span></span><br><span class="line"><span class="attr">  my-custom-plan-name:</span></span><br><span class="line">    <span class="comment"># See details in Plan object</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Plan-object"><a href="#Plan-object" class="headerlink" title="Plan object"></a>Plan object</h2><h3 id="Optional-plan-atributes"><a href="#Optional-plan-atributes" class="headerlink" title="Optional plan atributes"></a>Optional plan atributes</h3><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>description</td>
+<td>Short sentence about the aim of the plan</td>
+</tr>
+<tr>
+<td><a href="#environment-object">environment</a></td>
+<td>Custom environment variable for the plan</td>
+</tr>
+<tr>
+<td><a href="#script-object">before_script</a></td>
+<td>Run script before start the plan</td>
+</tr>
+<tr>
+<td><a href="#script-object">after_script</a></td>
+<td>Run script after start the plan</td>
+</tr>
+<tr>
+<td><a href="#checkout-object">checkout</a></td>
+<td>Other Git repositories of the project</td>
+</tr>
+</tbody></table>
+<h3 id="Plan-resource-attribute"><a href="#Plan-resource-attribute" class="headerlink" title="Plan resource attribute"></a>Plan resource attribute</h3><p>only one type of runner can be used in plan</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>docker-compose-file</td>
+<td>List of docker compose files</td>
+</tr>
+<tr>
+<td>script</td>
+<td>List of command</td>
+</tr>
+<tr>
+<td>kubernetes-file</td>
+<td>List of Kubernetes resources</td>
+</tr>
+<tr>
+<td>kubernetes-dir</td>
+<td>List of Kubernetes resourves directory</td>
+</tr>
+<tr>
+<td>helm-file</td>
+<td>List of Helm chart file</td>
+</tr>
+<tr>
+<td>helm-dir</td>
+<td>List of Helm chart directory</td>
+</tr>
+</tbody></table>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">plan:</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">## Docker compose plan</span></span><br><span class="line"><span class="attr">  my-custom-plan-name:</span></span><br><span class="line"><span class="attr">    description:</span> <span class="string">"This is the sample description"</span></span><br><span class="line"><span class="attr">    environment:</span></span><br><span class="line"><span class="attr">      include:</span> <span class="string">.poco/global/my-custom-plan.env</span></span><br><span class="line"><span class="attr">    docker-compose-file:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">.poco/nginx.yaml</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">.poco/nodejs.yaml</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">## Script plan</span></span><br><span class="line"><span class="attr">  my-script-plan:</span></span><br><span class="line">    <span class="string">description</span> <span class="string">"Custom cleanup plan"</span></span><br><span class="line"><span class="attr">    script:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">rm</span> <span class="bullet">-rf</span> <span class="string">.poco/custom-temp-folder</span></span><br></pre></td></tr></table></figure>
+
+
 
     </div>
 </main>
