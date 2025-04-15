@@ -1,0 +1,18 @@
+version: "3.0"
+maintainer: "operations@shiwaforce.com"
+
+before_script:
+  - cd docker/scripts && chmod +x *
+
+environment:
+  include: docker/conf/default/conf.env
+
+plan:
+  dev:
+    description: "local dev environment"
+    docker-compose-file:
+      - docker/dc-dev.yml
+  build:
+    description: "build environment"
+    docker-compose-file:
+      - docker/dc-build.yml

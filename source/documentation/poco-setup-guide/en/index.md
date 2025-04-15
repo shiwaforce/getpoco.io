@@ -1,3 +1,9 @@
+---
+title: Poco-izing
+---
+
+# Poco-izing
+
 When we talk about "poco-izing" a project, we mean making the source code runnable using the poco tool. For example, we don’t want to install Node.js on the host machine, and we don’t want to type long docker compose commands.
 
 First, we need a file named poco.yml in the root of the project. Here's an example:

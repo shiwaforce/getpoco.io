@@ -1,3 +1,9 @@
+---
+title: Pocósítás
+---
+
+# Pocósítás
+
 Amikor poco-sítást kérünk, akkor arra gondolunk, hogy a poco nevű programmal ([link](https://getpoco.io/documentation/)) indítható legyen a forráskód. Például ne kelljen Node.js-t telepíteni a hostgépre, és ne kelljen hosszú docker compose parancsokat gépelni.
 
 Elsőként a projekt gyökerében kell egy poco.yml nevű fájl. Erre egy példa itt van:

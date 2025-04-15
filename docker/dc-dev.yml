@@ -1,0 +1,20 @@
+services:
+  dev:
+    image: node:20
+    user: "${POCO_UID}:${POCO_GID}"
+    restart: "no"  #String kell hogy legyen
+    stop_signal: SIGKILL
+    environment:
+      UID: ${POCO_UID}
+      GID: ${POCO_GID}
+      HOST: ${HOST_SYSTEM}
+    logging:
+      options:
+        max-size: "10k"
+        max-file: "3"
+    volumes:
+      - ${PROJECT_HOME}:/usr/local/app
+    working_dir: /usr/local/app
+    ports:
+      - 80:4000
+    command: ./docker/scripts/start-dev.sh
