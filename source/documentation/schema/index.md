@@ -12,19 +12,20 @@ You must store poco files in the root directory of your repository.
 
 ## POCO plans configuration file
 
-| Field                              | Description                             |
-| ---------------------------------- | --------------------------------------- |
-| version                            | Minimum API version of poco yaml schema |
-| maintener                          | Owner of the project                    |
-| [environment](#environment-object) | Global environment variable             |
-| [plan](#plans-object)              | The plan configurations                 |
-| [checkout](#checkout-object)       | Other Git repositories of the project   |
-| [before_script](#script-object)    | Run script before start the plan        |
-| [after_script](#script-object)     | Run script after start the plan         |
+| Field                                    | Description                             |
+| ---------------------------------------- | --------------------------------------- |
+| version                                  | Schema version (e.g. `'2.0'`)           |
+| maintainer                               | Owner/contact of the project            |
+| [environment](#environment-object)       | Global environment variable             |
+| [plan](#plans-object)                    | The plan configurations                 |
+| [checkout](#checkout-object)             | Other Git repositories of the project   |
+| [before_script](#script-object)          | Run script before start the plan        |
+| [after_script](#script-object)           | Run script after start the plan         |
+| [before_docker_script](#before_docker_script) | Run commands on host before Docker (per OS) |
 
 ```yaml
-version: 0.99
-maintener: operation@shiwaforce.com
+version: '2.0'
+maintainer: operation@example.com
 environment:
   # see details in Environment object
 checkout:
@@ -76,6 +77,21 @@ before_script:
   command:
     - mkdir -p .poco/custom-temp-folder
     - cp -r /data-in-container .poco/custom-temp-folder
+```
+
+## before_docker_script (optional)
+
+Commands run on the **host** before Docker, per OS. Keys: **linux**, **darwin**, **windows**. Each value is a list of shell command strings. Only used in Docker (Compose) mode.
+
+```yaml
+before_docker_script:
+  linux:
+    - "mkdir -p ./data"
+    - "chmod +x ./scripts/*.sh"
+  darwin:
+    - "mkdir -p ./data"
+  windows:
+    - "if not exist .\\data mkdir .\\data"
 ```
 
 ## Plans object

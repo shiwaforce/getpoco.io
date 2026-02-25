@@ -3,6 +3,14 @@ title: Commands
 ---
 
 # Commands
+
+### Global options
+- **-i, --interactive** — Interactive menu (`poco -i`): start/stop, Kubernetes, Helm, catalog.
+- **-V, --verbose** — More output (e.g. merged compose for up/down).
+- **-VV, --no-matrix** — No matrix effect for up/down; show full log. Implies verbose.
+- **-a, --all** — With `poco status`: include stopped projects.
+- **-q, --quiet** — Less output. **--offline** — Offline mode.
+
 ### poco
 {% raw %}
 <table>
@@ -14,11 +22,17 @@ title: Commands
     </thead>
     <tbody>
         <tr>
-            <td><b><code>$:~ poco project-config [&lt;project&gt;] [&lt;plan&gt;]</code></b></td>
+            <td><b><code>$:~ poco config [&lt;project&gt;] [&lt;plan&gt;]</code></b></td>
             <td>
                 <p>Print full Docker compose configuration for a project's plan.</p>
                 <p><code>[&lt;project&gt;]</code> - Name of the project in the catalog</p>
                 <p><code>[&lt;plan&gt;]</code> - Name of the project's plan</p>
+            </td>
+        </tr>
+        <tr>
+            <td><b><code>$:~ poco status [-a]</code></b></td>
+            <td>
+                <p>List Docker Compose projects currently running (from any directory). Use <code>-a</code> or <code>--all</code> to include stopped projects.</p>
             </td>
         </tr>
         <tr>
@@ -123,8 +137,53 @@ title: Commands
             <td>
                 <p>Unpack archive, install images to local repository.</p>
                 <p><code>[&lt;project&gt;]</code> - Name of the project in the catalog</p>
-                <p><code>[&lt;plan&gt;]</code> - Name of the project's plan</p>
             </td>
+        </tr>
+    </tbody>
+</table>
+{% endraw %}
+
+### Kubernetes and Helm (poco)
+{% raw %}
+<table>
+    <thead>
+        <tr>
+            <th width="40%"><b>Command</b></th>
+            <th width="60%"><b>Description</b></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><b><code>$:~ poco kubectx [&lt;context&gt;]</code></b></td>
+            <td>List contexts; or switch to <code>&lt;context&gt;</code>. Use <code>-i</code> to choose interactively.</td>
+        </tr>
+        <tr>
+            <td><b><code>$:~ poco kubens [&lt;namespace&gt;]</code></b></td>
+            <td>List namespaces; or switch to <code>&lt;namespace&gt;</code>. Use <code>-i</code> to choose interactively.</td>
+        </tr>
+        <tr>
+            <td><b><code>$:~ poco kube-get &lt;resource&gt; [name]</code></b></td>
+            <td>Shortcut for <code>kubectl get</code>. E.g. <code>poco kube-get pods</code>, <code>poco kube-get ns</code>. Use <code>-n &lt;ns&gt;</code> or <code>-A</code> for all namespaces.</td>
+        </tr>
+        <tr>
+            <td><b><code>$:~ poco preset list</code></b></td>
+            <td>List saved presets (context + namespace). Config: <code>~/.poco/presets.yml</code>.</td>
+        </tr>
+        <tr>
+            <td><b><code>$:~ poco preset use &lt;name&gt;</code></b></td>
+            <td>Switch to preset (context and namespace). Use <code>-i</code> to choose from list.</td>
+        </tr>
+        <tr>
+            <td><b><code>$:~ poco preset save &lt;name&gt;</code></b></td>
+            <td>Save current context and namespace as a preset.</td>
+        </tr>
+        <tr>
+            <td><b><code>$:~ poco helm-repos</code></b></td>
+            <td>List Helm repositories.</td>
+        </tr>
+        <tr>
+            <td><b><code>$:~ poco helm-list</code></b></td>
+            <td>List Helm releases. Use <code>--all-namespaces</code> for all; <code>-i</code> to pick one and show status.</td>
         </tr>
     </tbody>
 </table>
