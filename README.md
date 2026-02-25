@@ -1,24 +1,18 @@
 # getpoco.io
-Official Website for [getpoco.io](https://github.com/shiwaforce/poco)
 
-Hexo is used as static generator. Get more info about hexo [https://hexo.io](https://hexo.io)
+Official website for [getpoco.io](https://github.com/shiwaforce/poco). Built with [Hexo](https://hexo.io).
 
-## Getting Started
-Install Hexo:
-```
-$:~ npm i hexo -g
-```
+## Requirements
 
-Install dependencies:
-```
-$:~ npm i
-```
+- **Node.js 20+** (see [.nvmrc](.nvmrc); use `nvm use` if you use nvm)
 
-Start Server
-```
+## Getting started
+
+```bash
+npm install
 npm start
 ```
 
-Open in the browser `http://localhost:4000`
+Open http://localhost:4000 in your browser.
 
 
