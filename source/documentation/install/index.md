@@ -8,7 +8,8 @@ Before installing Poco you need Git, Python, and (for Compose) Docker. Kubernete
 **Supported platforms:** Linux, Mac OS, Windows (including Git Bash).
 
 ### Install Git
-https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+https://git-scm.com/book/en/v2/Getting-Started-Installing-Git  
+On Ubuntu: `sudo apt install git`. On Mac: `brew install git`.
 
 ### Install Python
 **Python 3.12.3 or newer** is required. (Supported version: 3.14.3.)  
@@ -26,7 +27,7 @@ https://kubernetes.io/docs/tasks/tools/install-kubectl/
 
 ### Install Helm (optional)
 Only needed for Helm support.  
-https://github.com/kubernetes/helm
+https://helm.sh/docs/intro/install/
 
 ---
 

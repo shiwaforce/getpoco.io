@@ -20,8 +20,8 @@
     <tr>
       <td><b><code>poco project init [&lt;project&gt;]</code></b></td>
       <td>
-        <p>Init default project, example poco.yml and docker-compose.yml files will be created.</p>
-        <p><code>[&lt;project&gt;]</code> - Name of the project that will be added to the catalog</p>
+        <p>Create poco.yml and docker-compose.yml if they don't exist. Same as <code>poco init</code>.</p>
+        <p><code>[&lt;project&gt;]</code> - Name of the project (or current dir if omitted).</p>
       </td>
     </tr>
     <tr>

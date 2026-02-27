@@ -131,7 +131,7 @@ services:
       - ${PROJECT_HOME}/frontend:/usr/local/app/frontend
       - ${PROJECT_HOME}/docker:/usr/local/app/docker
     working_dir: /usr/local/app/frontend
-    command: ../docker/scripts/start-frontend-dev.sh
+    command: ../docker/scripts/start-dev.sh
 ```
 
 Itt Node.js-t használunk, 22-es verziót. A user beállítás fontos lehet, az értékei a poco által biztosított ID-k. A stop_signal megadása azért fontos, hogy egy poco down js parancsnál ne timeout után állítsa le a konténert, hanem gyorsan. A konténerbe a környezeti változókat a szokásos módon lehet bejuttatni. A logolás beállítása is fontos, hogy ne árasszon el mindent a sok log.

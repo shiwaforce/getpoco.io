@@ -9,7 +9,7 @@ for this we will use simple nginx to serve our source html.
 
 ### Step 1: Init Git Repository 
 
-Before we start lets init git repository:
+Before we start, let's init the git repository:
 ```
 $:~ mkdir poco-hello-world
 $:~ cd poco-hello-world
@@ -19,8 +19,8 @@ $:~ git init
 
 ### Step 2: Add source files
 
-When git repository is ready lets add some source files to our project first,
-so we will be able to see that our ngnix server is workink correctly.
+When the git repository is ready, let's add some source files to our project first,
+so we will be able to see that our nginx server is working correctly.
 Create `index.html` file inside `/source/www` folder:
 ```
 <!doctype html>
@@ -77,7 +77,7 @@ http {
 ```
   
   
-To tell our nginx server to use our config file we need to map it in our `/dockder/dc-nginx.yaml` file:
+To tell our nginx server to use our config file we need to map it in our `/docker/dc-nginx.yaml` file:
 ```
 version: '3'
 
@@ -95,12 +95,13 @@ services:
 ### Step 5: Configure Poco Project
 
 When docker compose is ready we can add it to our `poco.yaml`:
-```
-version: '1.0'
+```yaml
+version: '2.0'
 
 plan:
   default:
-    - docker/dc-nginx.yaml
+    docker-compose-file:
+      - docker/dc-nginx.yaml
 ```
 
 

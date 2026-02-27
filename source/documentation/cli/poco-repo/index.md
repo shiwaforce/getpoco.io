@@ -8,14 +8,8 @@
       <th width="40%"><b>Command</b></th>
       <th width="60%"><b>Description</b></th>
     </tr>
-    <thead>
+    </thead>
     <tbody>
-    <tr>
-      <td><b><code>poco repo init</code></b></td>
-      <td>
-        <p>Initialize default environment and sample catalog.</p>
-      </td>
-    </tr>
     <tr>
       <td><b><code>poco repo (add|modify) &lt;name&gt; &lt;git-url&gt; <br/> [&lt;branch&gt;] [&lt;file&gt;]</code></b></td>
       <td>
@@ -57,9 +51,15 @@
       </td>
     </tr>
     <tr>
+      <td><b><code>poco repo pull</code></b></td>
+      <td>
+        <p>Refresh catalog from repository. Same as <code>poco catalog-update</code>.</p>
+      </td>
+    </tr>
+    <tr>
       <td><b><code>poco repo ls</code></b></td>
       <td>
-        <p>List repos available config(s).</p>
+        <p>List configs of catalogs.</p>
       </td>
     </tr>
     </tbody>

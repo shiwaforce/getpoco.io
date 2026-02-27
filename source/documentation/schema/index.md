@@ -25,7 +25,7 @@ You must store poco files in the root directory of your repository.
 
 ```yaml
 version: '2.0'
-maintainer: operation@example.com
+maintainer: operations@example.com
 environment:
   # see details in Environment object
 checkout:
@@ -69,7 +69,7 @@ checkout:
 | Field   | Description                              |
 | --------| ---------------------------------------- |
 | image   | Name of the custom plan (dynamic object) |
-| command | List of command                          |
+| command | List of commands                         |
 
 ```yaml
 before_script:
@@ -108,7 +108,7 @@ plan:
 
 ## Plan object
 
-### Optional plan atributes
+### Optional plan attributes
 
 | Field                              | Description                                |
 | ---------------------------------- | ------------------------------------------ |
@@ -120,16 +120,16 @@ plan:
 
 ### Plan resource attribute
 
-only one type of runner can be used in plan
+Only one type of runner can be used per plan
 
 | Field                              | Description                             |
 | ---------------------------------- | --------------------------------------- |
 | docker-compose-file                | List of docker compose files            |
 | script                             | List of command                         |
 | kubernetes-file                    | List of Kubernetes resources            |
-| kubernetes-dir                     | List of Kubernetes resourves directory  |
-| helm-file                          | List of Helm chart file                 |
-| helm-dir                           | List of Helm chart directory            |
+| kubernetes-dir                     | List of Kubernetes resources directory  |
+| helm-file                          | List of Helm chart files                |
+| helm-dir                           | List of Helm chart directories          |
 
 ```yaml
 plan:
@@ -145,7 +145,7 @@ plan:
 
   ## Script plan
   my-script-plan:
-    description "Custom cleanup plan"
+    description: "Custom cleanup plan"
     script:
       - rm -rf .poco/custom-temp-folder
 ```
