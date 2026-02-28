@@ -45,8 +45,6 @@ We recommend to split docker-compose files by services (one file - one service),
 this will help to make project more flexible. 
 Create `dc-nginx.yaml` file inside `/docker` folder and map our source folder:
 ```
-version: '3'
-
 services:
   nginx:
     image: nginx:alpine
@@ -79,8 +77,6 @@ http {
   
 To tell our nginx server to use our config file we need to map it in our `/docker/dc-nginx.yaml` file:
 ```
-version: '3'
-
 services:
   nginx:
     image: nginx:alpine

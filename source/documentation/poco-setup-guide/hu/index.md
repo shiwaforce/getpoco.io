@@ -42,8 +42,6 @@ Minden plan tartalmaz egy szabadszöveges leírást emberek számára a descript
 dc-proxy.yml
 
 ```
-version: '3'
-
 services:
   proxy:
     depends_on:
@@ -111,8 +109,6 @@ Azaz nincs saját kiszolgálás benne, csak proxy-ként használjuk valóban. M�
 Nézzük a dc-frontend.yml fájlt ebben a példában:
 
 ```
-version: '3'
-
 services:
   frontend:
     image: node:22

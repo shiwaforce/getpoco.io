@@ -44,8 +44,6 @@ Each plan contains a free-text description for humans under the description fiel
 dc-proxy.yml
 
 ```
-version: '3'
-
 services:
   proxy:
     depends_on:
@@ -115,8 +113,6 @@ The services don’t need their ports exposed, since everything is reachable int
 Now let’s look at the dc-frontend.yml file used in this example:
 
 ```
-version: '3'
-
 services:
   frontend:
     image: node:22
