@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="/assets/css/page.css">
 
     
-<meta name="generator" content="Hexo 4.2.1"></head>
+<meta name="generator" content="Hexo 7.3.0"></head>
 
     <body class="🐭 ">
         <header id="header" class="header header--white">
@@ -102,6 +102,12 @@
                 <a class="sidebar__link" href="/documentation/install">Install</a>
             </li>
             <li class="sidebar__list-item">
+                <a class="sidebar__link" href="/documentation/agent-skills">Agent Skills</a>
+            </li>
+            <li class="sidebar__list-item">
+                <a class="sidebar__link" href="/documentation/configuration">Configuration</a>
+            </li>
+            <li class="sidebar__list-item">
                 <a class="sidebar__link" href="/documentation/third-party-integrations">Third Party Integrations</a>
             </li>
             <li class="sidebar__list-item">
@@ -143,34 +149,34 @@
 
 <main class="main">
     <div class="content">
-        <h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p>Poco helps to organise and manage Docker, Docker-Compose, Kubernetes projects of any complexity using simple YAML config files to shorten the route from finding your project to initialising it in your local environment.</p>
+        <h1 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h1><p>Poco is one CLI for <strong>Docker</strong>, <strong>Kubernetes</strong>, and <strong>Helm</strong>: organise and run Compose projects from a catalog, switch kubectl context and namespace, list Helm repos and releases — without leaving your terminal.</p>
 <ul>
-<li>Simple. Configure, run and switch between projects with a very simple command line interface.</li>
-<li>Flexibility. Manage, scale, maintain projects of any complexity with ease.</li>
-<li>Configure Once, Use Everywhere. Configure project once so the rest of your team will feel the value of zero configuration.</li>
+<li><strong>Simple.</strong> Configure, run and switch between projects with a very simple command line interface.</li>
+<li><strong>Flexibility.</strong> Manage, scale, maintain projects of any complexity with ease.</li>
+<li><strong>Configure Once, Use Everywhere.</strong> Configure project once so the rest of your team will feel the value of zero configuration.</li>
 </ul>
-<h3 id="Features"><a href="#Features" class="headerlink" title="Features"></a>Features</h3><ul>
-<li>Docker, Docker-Compose, Kubernetes, Helm support out of the box.</li>
-<li>Git, SVN support out of the box.</li>
-<li>Project Catalog, Multiple Catalogues. Create your own project catalog. Organise and your projects without additional tools.</li>
-<li>Multiple Plans. Create multiple plans for different environments or even environments for demo purposes. Switch between plans (environments) with ease.</li>
-<li>Simple Config Files. Poco helps to split config files, so it is easy to maintain and scale them any time.</li>
-<li>Script Support (Hooks). Add additional scripts any time.   </li>
+<h3 id="Features-1-0"><a href="#Features-1-0" class="headerlink" title="Features (1.0)"></a>Features (1.0)</h3><ul>
+<li><strong>Docker Compose</strong> — <code>poco up</code>, <code>poco down</code>, <code>poco ps</code>, <code>poco status</code> (overview of running projects from any directory), <code>poco config</code>, build, pull. Matrix-style effect for up&#x2F;down; use <code>-VV</code> or <code>--no-matrix</code> for full log.</li>
+<li><strong>Kubernetes</strong> — <code>poco kubectx</code>, <code>poco kubens</code> (list&#x2F;switch context and namespace), <code>poco kube-get pods|ns|svc|...</code>, <strong>presets</strong> (save&#x2F;switch context + namespace in one command: <code>poco preset list|use|save</code>).</li>
+<li><strong>Helm</strong> — <code>poco helm-repos</code>, <code>poco helm-list</code> (releases; <code>-i</code> to pick interactively).</li>
+<li><strong>Interactive menu</strong> — <code>poco -i</code> for a step-by-step menu (start&#x2F;stop, K8s, Helm, catalog).</li>
+<li><strong>Global options</strong> — <code>-V</code> (verbose), <code>-VV</code> &#x2F; <code>--no-matrix</code>, <code>-a</code> (with status: include stopped projects).</li>
+<li>Git, SVN support. Project catalog, multiple catalogs, multiple plans. Script support (before_script, <strong>before_docker_script</strong> for host-side commands per OS: windows, darwin, linux).</li>
 </ul>
-<h3 id="Poco-Project"><a href="#Poco-Project" class="headerlink" title="Poco Project"></a>Poco Project</h3><p>Poco project is basically git/svn project. Each Poco Project should have <code>poco.yaml</code> file and at least one <code>docker-compose.yaml</code> file.<br><code>poco.yaml</code> example:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">version: &#39;1.0&#39;</span><br><span class="line">maintainer: &#39;operations@shiwaforce.com&#39;</span><br><span class="line"></span><br><span class="line">environment:</span><br><span class="line">  include: docker&#x2F;conf.env</span><br><span class="line"></span><br><span class="line">plan:</span><br><span class="line">  demo:</span><br><span class="line">    - docker&#x2F;dc-nginx.yaml # - docker-compose file </span><br><span class="line">    - docker&#x2F;dc-mysql-demo.yaml # - docker-compose file</span><br><span class="line">    - docker&#x2F;dc-node.yaml # - docker-compose file</span><br><span class="line">    - docker&#x2F;dc-phpmyadmin.yaml # - docker-compose file</span><br><span class="line">  dev:</span><br><span class="line">    - docker&#x2F;dc-nginx.yaml # - docker-compose file</span><br><span class="line">    - docker&#x2F;dc-mysql-dev.yaml # - docker-compose file</span><br><span class="line">    - docker&#x2F;dc-node.yaml # - docker-compose file</span><br><span class="line">    - docker&#x2F;dc-phpmyadmin.yaml # - docker-compose file</span><br></pre></td></tr></table></figure>
-
-<h3 id="Poco-Plan"><a href="#Poco-Plan" class="headerlink" title="Poco Plan"></a>Poco Plan</h3><p>With Poco plans you can configure multiple environments (development, production, demo, etc.) in your project<br>keeping configuration small, easy scalable, maintainable and reusable. </p>
+<h3 id="Poco-Project"><a href="#Poco-Project" class="headerlink" title="Poco Project"></a>Poco Project</h3><p>A Poco project is a git&#x2F;svn project with a <strong>poco.yml</strong> file (and at least one docker-compose file). Example:</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">&#x27;2.0&#x27;</span></span><br><span class="line"><span class="attr">maintainer:</span> <span class="string">&#x27;operations@example.com&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">environment:</span></span><br><span class="line">  <span class="attr">include:</span> <span class="string">docker/conf.env</span></span><br><span class="line"></span><br><span class="line"><span class="attr">plan:</span></span><br><span class="line">  <span class="attr">default:</span></span><br><span class="line">    <span class="attr">docker-compose-file:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">docker/dc-nginx.yml</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">docker/dc-app.yml</span></span><br><span class="line">  <span class="attr">demo:</span></span><br><span class="line">    <span class="attr">docker-compose-file:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">docker/dc-nginx.yml</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">docker/dc-mysql-demo.yml</span></span><br></pre></td></tr></table></figure>
+<p>See <a href="/documentation/configuration">Configuration</a> and <a href="/documentation/schema">Schema</a> for <strong>before_docker_script</strong>, <strong>containers</strong>, and full options.</p>
+<h3 id="Poco-Plan"><a href="#Poco-Plan" class="headerlink" title="Poco Plan"></a>Poco Plan</h3><p>With Poco plans you can configure multiple environments (development, production, demo, etc.) in your project<br>keeping configuration small, easily scalable, maintainable and reusable. </p>
 <h4 id="Use-Cases"><a href="#Use-Cases" class="headerlink" title="Use Cases:"></a>Use Cases:</h4><ul>
 <li>useful for large scalable projects or with projects with big number of micro services.</li>
-<li>configure plans (environments) for different groups of developers, so they will be able to run only required services/containers keeping low usage of working machine resources.</li>
-<li>configure plans for demo purposes with predefined content, so any one in your team could demonstrate any project to the client with easy.</li>
+<li>configure plans (environments) for different groups of developers, so they will be able to run only required services&#x2F;containers keeping low usage of working machine resources.</li>
+<li>configure plans for demo purposes with predefined content, so anyone on your team can demonstrate any project to the client with ease.</li>
 </ul>
-<h3 id="Poco-Repo"><a href="#Poco-Repo" class="headerlink" title="Poco Repo."></a>Poco Repo.</h3><p>Poco Repo - is a collection of Poco Projects.<br>With the help of Poco Repo you will be able to organise and manage your projects in a simple way.<br>Poco Repo example:</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">my-project-1:</span><br><span class="line">  file: poco.yaml</span><br><span class="line">  git: ssh:&#x2F;&#x2F;git@git-server.com&#x2F;my-project-1</span><br><span class="line">my-project-2:</span><br><span class="line">  file: poco.yaml</span><br><span class="line">  git: ssh:&#x2F;&#x2F;git@git-server.com&#x2F;my-project-2</span><br></pre></td></tr></table></figure>
+<h3 id="Poco-Repo"><a href="#Poco-Repo" class="headerlink" title="Poco Repo"></a>Poco Repo</h3><p>Poco Repo is a catalog source (a Git repo with a <code>poco-catalog.yml</code> file). Use <code>poco repo add</code>, <code>poco repo ls</code>, <code>poco repo pull</code>, <code>poco repo push</code> to manage repos. Example catalog entry:</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">my-project-1:</span></span><br><span class="line">  <span class="attr">file:</span> <span class="string">poco.yml</span></span><br><span class="line">  <span class="attr">git:</span> <span class="string">ssh://git@git-server.com/my-project-1</span></span><br><span class="line"><span class="attr">my-project-2:</span></span><br><span class="line">  <span class="attr">file:</span> <span class="string">poco.yml</span></span><br><span class="line">  <span class="attr">git:</span> <span class="string">ssh://git@git-server.com/my-project-2</span></span><br></pre></td></tr></table></figure>
 
-
-<h3 id="Poco-Catalog"><a href="#Poco-Catalog" class="headerlink" title="Poco Catalog"></a>Poco Catalog</h3><p>Poco Catalog - is a collection of Poco Repos. Add multiple Poco Repos form same or different resources.</p>
+<h3 id="Poco-Catalog"><a href="#Poco-Catalog" class="headerlink" title="Poco Catalog"></a>Poco Catalog</h3><p>The catalog lists available projects (from poco-catalog.yml in each repo). Add repos with <code>poco repo add</code>; the catalog must contain a <code>poco-catalog.yml</code> with project definitions. Use <code>poco project add</code>, <code>poco project ls</code>, <code>poco catalog</code> to work with projects. Run <code>poco -?</code> or <code>poco help &lt;command&gt;</code> for up-to-date usage.</p>
+<h3 id="Agent-Skills-AI-assistants"><a href="#Agent-Skills-AI-assistants" class="headerlink" title="Agent Skills (AI assistants)"></a>Agent Skills (AI assistants)</h3><p>Use Poco with Cursor, Claude Code, or other agents: install <a href="https://github.com/shiwaforce/poco-skills">Agent Skills</a> so the assistant knows when and how to run poco. See <a href="/documentation/agent-skills">Agent Skills</a>.</p>
 
     </div>
 </main>
