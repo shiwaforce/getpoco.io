@@ -7,7 +7,7 @@ title: Commands
 ### Global options
 - **-i, --interactive** — Interactive menu (`poco -i`): start/stop, Kubernetes, Helm, catalog.
 - **-V, --verbose** — More output (e.g. merged compose for up/down).
-- **-VV, --no-matrix** — No matrix effect for up/down; show full log. Implies verbose.
+- **-VV, --no-matrix** — Turn the matrix effect off for this up/down and show the full log. Implies verbose. The effect stays off until you enable it.
 - **-a, --all** — With `poco status`: include stopped projects.
 - **-q, --quiet** — Less output.
 - **--offline** — Offline mode.
@@ -56,13 +56,19 @@ title: Commands
         <tr>
             <td><b><code>poco (start|up) [&lt;project/plan&gt;]</code></b></td>
             <td>
-                <p>Start project. Use <code>-V</code> for verbose, <code>-VV</code> or <code>--no-matrix</code> for full log.</p>
+                <p>Start project. The matrix effect is off unless you enabled it. Use <code>-V</code> for verbose, <code>-VV</code> or <code>--no-matrix</code> for the full log.</p>
             </td>
         </tr>
         <tr>
             <td><b><code>poco (stop|down) [&lt;project/plan&gt;]</code></b></td>
             <td>
-                <p>Stop project. Use <code>-V</code>, <code>-VV</code> or <code>--no-matrix</code>.</p>
+                <p>Stop project. The matrix effect is off unless you enabled it. Use <code>-V</code>, <code>-VV</code> or <code>--no-matrix</code> for the full log.</p>
+            </td>
+        </tr>
+        <tr>
+            <td><b><code>poco matrix [on|off]</code></b></td>
+            <td>
+                <p>Enable or disable the matrix effect. With no argument, asks on a terminal when no choice is saved yet, or prints the current state. <code>poco matrix on</code> and <code>poco matrix off</code> save the choice in <code>~/.poco/settings.yml</code>. <code>POCO_MATRIX=1</code> or <code>POCO_MATRIX=0</code> overrides that choice for one process.</p>
             </td>
         </tr>
         <tr>

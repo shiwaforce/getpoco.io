@@ -14,7 +14,7 @@ Agent Skills are structured instructions (e.g. markdown files in a standard form
 
 **[shiwaforce/poco-skills](https://github.com/shiwaforce/poco-skills)** provides:
 
-- **poco** skill — Commands (up, down, status, ps, config), Kubernetes (kubectx, kubens, kube-get, presets), Helm (helm-repos, helm-list), poco.yml, global options (-i, -V, -VV, -a), and workflows.
+- **poco** skill — Commands (up, down, status, ps, config, matrix), Kubernetes (kubectx, kubens, kube-get, presets), Helm (helm-repos, helm-list), poco.yml, global options (-i, -V, -VV, -a), and workflows. The matrix effect is off until enabled with `poco matrix on`.
 - **Shiwaforce conventions** (optional) — How Shiwaforce-style poco projects are structured (dc-*.yml, start scripts, proxy, logging, etc.) so the agent follows your practices.
 
 ## Install

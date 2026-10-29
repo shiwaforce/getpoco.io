@@ -10,7 +10,7 @@ Poco is one CLI for **Docker**, **Kubernetes**, and **Helm**: organise and run C
 - **Configure Once, Use Everywhere.** Configure project once so the rest of your team will feel the value of zero configuration.
 
 ### Features (1.0)
-- **Docker Compose** — `poco up`, `poco down`, `poco ps`, `poco status` (overview of running projects from any directory), `poco config`, build, pull. Matrix-style effect for up/down; use `-VV` or `--no-matrix` for full log.
+- **Docker Compose** — `poco up`, `poco down`, `poco ps`, `poco status` (overview of running projects from any directory), `poco config`, build, pull. The matrix-style effect for up/down is off until you enable it with `poco matrix on`. `-VV` or `--no-matrix` turns it off for one run and shows the full log.
 - **Kubernetes** — `poco kubectx`, `poco kubens` (list/switch context and namespace), `poco kube-get pods|ns|svc|...`, **presets** (save/switch context + namespace in one command: `poco preset list|use|save`).
 - **Helm** — `poco helm-repos`, `poco helm-list` (releases; `-i` to pick interactively).
 - **Interactive menu** — `poco -i` for a step-by-step menu (start/stop, K8s, Helm, catalog).

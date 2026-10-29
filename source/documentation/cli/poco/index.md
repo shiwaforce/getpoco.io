@@ -25,13 +25,20 @@
     <tr>
       <td><b><code>poco (start|up) [&lt;project/plan&gt;]</code></b></td>
       <td>
-        <p>Start project with the default or defined plan.</p>
+        <p>Start project with the default or defined plan. The matrix effect is off unless you enabled it. <code>-VV</code> or <code>--no-matrix</code> shows the full log for this run.</p>
       </td>
     </tr>
     <tr>
       <td><b><code>poco (stop|down) [&lt;project/plan&gt;]</code></b></td>
       <td>
-        <p>Stop project with the default or defined plan.</p>
+        <p>Stop project with the default or defined plan. The matrix effect is off unless you enabled it. <code>-VV</code> or <code>--no-matrix</code> shows the full log for this run.</p>
+      </td>
+    </tr>
+    <tr>
+      <td><b><code>poco matrix [on|off]</code></b></td>
+      <td>
+        <p>Enable or disable the matrix effect shown during <code>poco up</code> and <code>poco down</code>.</p>
+        <p>With no argument, asks on a terminal when no choice is saved yet, or prints the current state. <code>on</code> and <code>off</code> save the choice in <code>~/.poco/settings.yml</code>. <code>POCO_MATRIX=1</code> or <code>POCO_MATRIX=0</code> overrides that choice for one process.</p>
       </td>
     </tr>
     <tr>

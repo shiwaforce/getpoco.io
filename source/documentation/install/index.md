@@ -12,7 +12,7 @@ https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
 On Ubuntu: `sudo apt install git`. On Mac: `brew install git`.
 
 ### Install Python
-**Python 3.12.3 or newer** is required. (Supported version: 3.14.3.)  
+**Python 3.12.3 or newer** is required. The supported version is **3.14.10** (released 2026-10-25). Poco still runs on 3.12.3 or newer and prints a notice when the interpreter is older than 3.14.10.  
 https://www.python.org/downloads/
 
 ### Install Docker (for Compose)
@@ -43,6 +43,8 @@ pip install poco
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/shiwaforce/poco/master/install.sh)"
 ```
 The script installs Poco (e.g. via pipx) on Linux, Mac, WSL, and Windows Git Bash.
+
+On a terminal, the script then asks whether to enable the matrix effect. Press Enter to leave it off. The choice is saved in `~/.poco/settings.yml`. A non-interactive install leaves the effect off. Change it later with `poco matrix on` or `poco matrix off`.
 
 **Install script options:**
 
